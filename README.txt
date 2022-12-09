@@ -17,5 +17,14 @@ Version: 0.35.2
 Publisher: Go Team at Google
 
 
+Package used
+$go get github.com/spf13/viper      (is not installing)
+$go get github.com/ilyakaznacheev/cleanenv 
+
 Further help:
 https://code.visualstudio.com/docs/editor/debugging
+
+To add modul
+$ go mod init utube-downloader       (initialize local new module)
+$ go get github.com/ilyakaznacheev/cleanenv   (add package to the module)
+$ go mod tidy                   (removes unused Package)
