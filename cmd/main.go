@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	
 	// read config 
 	config:=cutils.GetShareConfig()
 	// config.RootPath = cutils.GetAppBasePath()
@@ -17,3 +18,4 @@ func main() {
 	video.Download(config)
 	// video.PrintHello()
 }
+                     

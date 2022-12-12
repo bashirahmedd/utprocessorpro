@@ -2,47 +2,67 @@ package common
 
 import (
 	"bytes"
+	"fmt"
+	"log"
 	"text/template"
 	"time"
+	// "github.com/ilyakaznacheev/cleanenv"
 
-	"github.com/ilyakaznacheev/cleanenv"
-
-	// "github.com/spf13/viper"
-	"log"
+	"github.com/spf13/viper"
 )
 
-type ConfigDownloader struct {
-	VideoId     string `yaml:"in_video_list"`
-	NextIterId  string `yaml:"next_iteration_file"`
-	BackupId    string `yaml:"log_id"`
-	LogPath    string `yaml:"log_path"`
-	VideoDlPath string `yaml:"video_dl_path"`
+type ConfigVideo struct {
+	VideoId     string `yaml:"video.in_video_list"`
+	NextIterId  string `yaml:"video.next_iteration_file"`
+	BackupId    string `yaml:"video.log_id"`
+	LogPath     string `yaml:"video.log_path"`
+	VideoDlPath string `yaml:"video.video_dl_path"`
 }
 
-type configVideo struct {
+type configParam struct {
 	VideoDlPath string
 	Counter     int64
 }
 
-func GetShareConfig() *ConfigDownloader {
+func GetShareConfig() *ConfigVideo {
 
-	var cfg ConfigDownloader
-	err1 := cleanenv.ReadConfig("../common/config.yaml", &cfg)
-	if err1 != nil {
-		log.Fatal("config.yaml read failed")
+	viper.AddConfigPath("../config")
+	viper.SetConfigName("config") // Register config file name (no extension)
+	viper.SetConfigType("yaml")   // Look for specific type
+	if err := viper.ReadInConfig(); err != nil {
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			panic(fmt.Errorf("Config file not found: %w", err))
+		} else {
+			panic(fmt.Errorf("Config file error: %w", err))
+		}
 	}
+	viper.GetString("video.video_dl_path")
+	fmt.Println(viper.Get("analytics"))
+	fmt.Println(viper.Get("keywords"))
+
+	var vcfg ConfigVideo
+	vcfg.VideoDlPath = viper.GetString("video.video_dl_path")
+	vcfg.VideoId = viper.GetString("video.in_video_list")
+	vcfg.NextIterId = viper.GetString("video.next_iteration_file")
+	vcfg.BackupId = viper.GetString("video.log_id")
+	vcfg.LogPath = viper.GetString("video.log_path")
+
+	// err1 := cleanenv.ReadConfig("../common/config.yaml", &cfg)
+	// if err1 != nil {
+	// 	log.Fatal("config.yaml read failed")
+	// }
 
 	//update placeholder
-	val := configVideo{cfg.VideoDlPath, time.Now().UnixMilli()}
-	processConfig(&cfg.BackupId, val)
-	processConfig(&cfg.NextIterId, val)
-	processConfig(&cfg.VideoId, val)
-	processConfig(&cfg.LogPath, val)
-	return &cfg
+	val := configParam{vcfg.VideoDlPath, time.Now().UnixMilli()}
+	processConfig(&vcfg.BackupId, val)
+	processConfig(&vcfg.NextIterId, val)
+	processConfig(&vcfg.VideoId, val)
+	processConfig(&vcfg.LogPath, val)
+	return &vcfg
 }
 
-func processConfig(tpl *string, val configVideo) {
-	
+func processConfig(tpl *string, val configParam) {
+
 	var result bytes.Buffer
 	tmpl, err := template.New("test").Parse(*tpl)
 	if err != nil {

@@ -1,0 +1,11 @@
+video:
+  video_dl_path: "/home/naji/Downloads/temp/ytdown/" # videos are download to this folder
+  in_video_list: "{{.VideoDlPath}}input/video_id.json" # ids are loaded here
+  next_iteration_file: "{{.VideoDlPath}}input/next_iteration.txt" # must be empty file in start
+  log_path: "{{.VideoDlPath}}log/" # log path for log files
+  log_id: "{{.VideoDlPath}}log/{{.Counter}}_backup_video_id.log" # log the given videoids
+
+analytics:
+  - google analytics
+  - statcounter
+keywords: [ "yaml", "markup" ]

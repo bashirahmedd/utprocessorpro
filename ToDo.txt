@@ -1,0 +1,9 @@
+youtube video should be downloaded in fixed size buffer and written to the target file.
+in each buffer read, exit signal should be tested.
+the target file should be post fixed with .part and rename by removing .part when download is completed.
+
+
+
+input video should be in the json object format with option to right back to the source file to mark download failure.
+sqllite db could be used.
+or any embedded db
