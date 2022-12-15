@@ -6,7 +6,6 @@ import (
 	"log"
 	"text/template"
 	"time"
-	// "github.com/ilyakaznacheev/cleanenv"
 
 	"github.com/spf13/viper"
 )
@@ -26,8 +25,9 @@ type configParam struct {
 
 func GetShareConfig() *ConfigVideo {
 
-	viper.AddConfigPath("../config")
-	viper.SetConfigName("config") // Register config file name (no extension)
+	viper.AddConfigPath(".")
+	viper.AddConfigPath("../")  // path required for debugging
+	viper.SetConfigName("config.yaml") // Register config file name (no extension)
 	viper.SetConfigType("yaml")   // Look for specific type
 	if err := viper.ReadInConfig(); err != nil {
 		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
@@ -36,9 +36,8 @@ func GetShareConfig() *ConfigVideo {
 			panic(fmt.Errorf("Config file error: %w", err))
 		}
 	}
-	viper.GetString("video.video_dl_path")
-	fmt.Println(viper.Get("analytics"))
-	fmt.Println(viper.Get("keywords"))
+	//fmt.Println(viper.Get("analytics"))
+	//fmt.Println(viper.Get("keywords"))
 
 	var vcfg ConfigVideo
 	vcfg.VideoDlPath = viper.GetString("video.video_dl_path")

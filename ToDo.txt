@@ -7,3 +7,37 @@ the target file should be post fixed with .part and rename by removing .part whe
 input video should be in the json object format with option to right back to the source file to mark download failure.
 sqllite db could be used.
 or any embedded db
+
+
+nitial state is good...
+Input id list is backed up.
+backed-up to ./log/1671024048_backup_video_id.log
+Starting download of 15 tasks.
+-----------------------------
+Target file id: tj7t3642b8o
+[youtube] tj7t3642b8o: Downloading webpage
+[download] Destination: /home/naji/Downloads/temp/ytdown/1671024048_Ertugrul Ghazi Urdu _ Episode 84_ Season 3_TRT Originals Urdu_tj7t3642b8o.mp4
+[download]  99.8% of 167.00MiB at 35.17KiB/s ETA 00:08[download] Got server HTTP error: [Errno 104] Connection reset by peer. Retrying (attempt 1 of 10)...
+[download] Destination: /home/naji/Downloads/temp/ytdown/1671024048_Ertugrul Ghazi Urdu _ Episode 84_ Season 3_TRT Originals Urdu_tj7t3642b8o.mp4
+[download] 100% of 167.00MiB in 01:21:07
+fn_process_fsize :https://www.youtube.com/watch?v=tj7t3642b8o
+success: tj7t3642b8o
+Hooray! task 1 out of 15 is successful.
+-----------------------------
+Target file id: gBNRl74NeiQ
+[youtube] gBNRl74NeiQ: Downloading webpage
+[download] Destination: /home/naji/Downloads/temp/ytdown/1671024049_Ertugrul Ghazi Urdu _ Episode 85_ Season 3_TRT Originals Urdu_gBNRl74NeiQ.mp4
+[download] 100% of 190.70MiB in 01:20:50
+fn_process_fsize :https://www.youtube.com/watch?v=gBNRl74NeiQ
+success: gBNRl74NeiQ
+Hooray! task 2 out of 15 is successful.
+-----------------------------
+Target file id: 7oYgAQcN8v4
+[youtube] 7oYgAQcN8v4: Downloading webpage
+[download] Destination: /home/naji/Downloads/temp/ytdown/1671024050_Ertugrul Ghazi Urdu _ Episode 83_ Season 3_TRT Originals Urdu_7oYgAQcN8v4.mp4
+[download] 100% of 150.46MiB in 27:30
+fn_process_fsize :https://www.youtube.com/watch?v=7oYgAQcN8v4
+success: 7oYgAQcN8v4
+Hooray! task 3 out of 15 is successful.
+-----------------------------
+Target file id: AAC2u7rXq1w
